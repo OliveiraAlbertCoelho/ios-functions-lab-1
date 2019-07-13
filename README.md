@@ -15,6 +15,20 @@ func totalWithTax() {
 
 }
 ```
+```swift
+let itemCost = 45.0
+let nyTax = 0.08775
+func totalWithTax(tax: Double) -> Double {
+let totalCost = itemCost - tax*nyTax
+return totalCost
+}
+//print(totalWithTax(tax: itemCost))
+func totalCostItemAfterTax(totalTax: Double) -> Int {
+let totalCost = totalWithTax(tax: itemCost)
+return Int(totalCost)
+}
+print(totalCostItemAfterTax(totalTax: itemCost))
+```
 
 Then, modify the function you implemented to have a return type of `Int`, and use an external name that looks more readable. Function calls should look something like "total cost of the item after tax"
 
@@ -33,6 +47,18 @@ if todaysTemperature <= 40 {
     print("Weather is moderate.")
 }
 ```
+```
+func temperatureIs(temperature: Int ) -> String{
+if temperature <= 40 {
+return  "It's cold out."
+} else if temperature >= 85 {
+return "It's really warm."
+} else {
+return "Weather is moderate."
+}
+}
+print(temperatureIs(temperature: 90))
+```
 
 
 ## Question 3
@@ -46,7 +72,16 @@ Example:
 Input: `min2(a:1, b:2)`
 
 Output: `1`
-
+```
+func min2(a: Int, b: Int) -> Int {
+if a>b {
+return b
+}else {
+return a
+}
+}
+print(min2(a: 80, b: 8))
+```
 
 ## Question 4
 
@@ -59,12 +94,30 @@ Example:
 Input: `lastDigit(12345)`
 
 Output: `5`
+```swift
+func lastDigit(_ number: Int) -> Int {
+let lastDigit = number%10
+return lastDigit
+}
+print(lastDigit(number: 23238))
+
+```
 
 
 ## Question 5
 
 Write a function that takes in any two positive integers and return the sum.
+```
+func sumOfPositive(number: Int, number2: Int) -> Int {
+var sum = 0
+if number>0 && number2 > 0{
+sum = number2 + number
+}
+return sum
+}
+print(sumOfPositive(number: 10, number2: 5))
 
+```
 
 ## Question 6
 
@@ -78,6 +131,42 @@ Write a function takes in any number grade and returns a corresponding letter gr
 | 70 - 79 | C |
 | 65 - 69 | D |
 | Below 65 | F |
+```
+func gradeChecker(grade: Int) -> String{
+switch grade {
+case 100:
+return "A+"
+case 90...99:
+return "A"
+case 80...89:
+return "B"
+case 70...79:
+return "C"
+case 65...69:
+return "D"
+default:
+return "F"
+}
+}
+print(gradeChecker(grade: 80))
+```
+```swift
+func calculator(number1: Int, number2: Int, operation: Character) -> Int {
+switch operation {
+case "+":
+return number1 + number2
+case "-":
+return number1 - number2
+case "/":
+return number1 / number2
+case "*":
+return number1 * number2
+default:
+return 0
+}
+}
+calculator(number1: 10, number2: 10, operation: "*" )
+```
 
 
 ## Question 7
@@ -85,7 +174,23 @@ Write a function takes in any number grade and returns a corresponding letter gr
 Make a calculator function that takes in three parameters (two numbers and one operator) and returns the answer of the operation.
 
 Operator parameter: (+, -, x, /)
-
+```
+func calculator(number1: Int, number2: Int, operation: Character) -> Int {
+switch operation {
+case "+":
+return number1 + number2
+case "-":
+return number1 - number2
+case "/":
+return number1 / number2
+case "*":
+return number1 * number2
+default:
+return 0
+}
+}
+calculator(number1: 10, number2: 10, operation: "*" )
+```
 
 ## Question 8
 
@@ -96,9 +201,13 @@ let mealCost = 45
 let tipPercentage = 0.15
 
 //Write your code below
-
-let myFinalCost = totalWithTip() //Fill in the arguments
+func totalWithTip(cost: Double , tip: Double) -> Double{
+let totalCost = cost + cost * tip
+return totalCost
+}
+let myFinalCost = totalWithTip(cost: 45, tip: 0.15)
 ```
+
 
 Write a function that will print out **total cost after tip and tax.**
 
@@ -108,6 +217,16 @@ let taxPercentage = 0.09
 //Write your code below
 
 let myFinalCostWithTipAndTax = totalWithTipAndTax() //Fill in the arguments in function
+
+let taxPercentage = 0.09
+let mealCost = 45
+let tipPercentage = 0.15
+
+func totalWithTipAndTax(cost: Double , tip: Double, tax: Double) -> Double{
+let totalCost = cost + (tax * cost) + (cost * tip)
+return totalCost
+}
+let myFinalCostWithTipAndTax = totalWithTipAndTax(cost: 10, tip: 0.20 , tax: 0.2)
 ```
 
 
@@ -119,6 +238,19 @@ Example:
 Input: `repeatPrint(message: "+", count: 10)`
 
 Output: `++++++++++`
+
+```swift
+func repeatPrint(message: String, count: Int){
+var word = ""
+for _ in 0...count{
+word += message
+}
+print(word)
+}
+
+repeatPrint(message: "+", count: 10)
+
+```
 
 
 ## Question 10
@@ -132,7 +264,17 @@ Example:
 Input: `first(3)`
 
 Output: `[1, 2, 3]`
+```swift
 
+func first(_ n: Int) -> [Int] {
+var arrayNums =  [Int]()
+for i in 1...n{
+arrayNums += [i]
+}
+return arrayNums
+}
+print(first(30))
+```
 
 ## Question 11
 
@@ -142,7 +284,23 @@ If the number if a multiple of 3, print `"Fizz"` instead of the number
 If the number is a multiple of 5, print `"Buzz"` instead of the number
 If the number is a multiple of 3 AND 5, print `"FizzBuzz"` instead of the number
 Your function should take in one parameter: x (the number to count up to)
+```swift
+func fizzbuzz(x: Int){
+for i in 1...x{
+if i%3 == 0 && i % 5 == 0 {
+print("FizzBuzz")
+} else if i % 5 == 0{
+print("Buzz")
+} else if i % 3 == 0{
+print("Fizz")
+}else {
+print(i)
+}
+}
+}
+fizzbuzz(x: 3)
 
+```
 
 ## Question 12
 
@@ -153,17 +311,66 @@ Example:
 Input: `reverse([1, 2, 3])`
 
 Output: `[3, 2, 1]`
-
+```
+func reverse(numbers: [Int]) -> [Int]{
+var anotherArray = [Int]()
+var counter = 1
+for _ in numbers{
+anotherArray.append(numbers[numbers.count-counter])
+counter += 1
+}
+return anotherArray
+}
+reverse(numbers: [1,2,3,4])
+```
 
 ## Question 13
 
 Write a function that prints out the most frequently appearing Int in an array of Int.
+```swift
+var someArray = [1,2,2,4,4,4,2,2]
+func frequent(arr: [Int])-> Int{
+var dict = [Int:Int]()
+var freq = Int()
+var big = Int()
+for i in arr {
+if dict.keys.contains(i){
+if let a = dict[i]{
+dict[i] = a + 1
+}
 
+}else {  dict[i] = 1}
+}
+for (keys,values) in dict{
+if values > big{
+big = values
+freq = keys
+}
+}
+return freq
+}
+frequent(arr: someArray)
+print(frequent(arr: someArray))
+
+```
 
 ## Question 14
 
 Write a function that sums all the even indices of an array of Ints.
-
+```
+func sum(array: [Int]) ->Int {
+var counter = 0
+var sum = 0
+for i in array{
+if counter % 2 == 0 {
+sum += i
+}
+counter += 1
+}
+return sum
+}
+sum(array: [1,2,3,4,5,6])
+```
 
 ## Question 15
 
@@ -173,7 +380,17 @@ Example:
 Input: `[1: "hi", 5: "bye:]`
 
 Output: `["hi": 1, "bye": 5]`
+```swift
+func reverse(dic: [Int:String])->[String:Int]{
+var anotherDict = [String:Int]()
+for (keys,values) in dic{
+anotherDict[values] = keys
+}
+return anotherDict
+}
+print(reverse(dic: [1: "hi", 5: "bye"]))
 
+```
 
 ## Question 16
 
@@ -183,11 +400,43 @@ Example:
 Input: `["Person 1": 83, "Person 2": 74, "Person 3": 82]`
 
 Output: `"Person 3"`
+```swift
+var a = ["Person 1": 83, "Person 2": 74, "Person 3": 82]
+func highest(high: [String: Int])-> String{
+var big = Int()
+var secondBig = Int()
+var person = String()
+var secondPerson = String()
+for (keys,values) in high{
+if values > big{
+big = values
+secondPerson = person
+person = keys
+}
+}
+return secondPerson
+}
+highest(high: ["Person 1": 83, "Person 2": 74, "Person 3": 82])
+```
+
+
+
 
 ## Question 17
 
 Write a function that determines if a value is inside of array.
-
+```
+func check(array: [Int], number: Int)-> Bool{
+var check = false
+for i in array{
+if i == number{
+check = true
+}
+}
+return check
+}
+check(array: [2,5,2,1,6], number: 3)
+```
 
 ## Question 18
 
@@ -195,6 +444,21 @@ Write a function takes an `Int` as input, and returns true if it is even, or fal
 Using your new function, write code that prints out whether `dieRoll` is even or odd:
 
 `let dieRoll = Int(arc4random_uniform(6) + 1)`
+```swift
+let dieRoll = Int(arc4random_uniform(6) + 1)
+func check(number: Int) -> Bool{
+if number%2==0{
+return true
+}
+return false
+}
+if check(number: dieRoll){
+print("Even")
+}else {
+print("Odd")
+}
+
+```
 
 
 ## Question 19
@@ -206,7 +470,28 @@ Using your function from the first step, use String interpolation to print a sen
 `let myArray = [3,5,1,3,532,1,4,91,20,30,92,143]`
 
 If you haven't already done so, write a function that takes in an Int and returns whether that number is even or odd. Use that function to print a sentence that states whether the largest Int in `myArray` is even or odd.
+```swift
+func check(number: Int) -> String{
+if number%2==0{
+return "Even number"
+}
+return "Odd number"
+}
 
+
+let myArray = [3,5,1,3,532,1,4,91,20,30,92,143]
+func largest(array: [Int])-> Int{
+var large = -1000
+for i in array{
+if i > large{
+large = i
+}
+}
+return large
+}
+var number = largest(array: myArray)
+print("the largest number in your array is \(number) and it is a \(check(number: number))")
+```
 
 ## Question 20
 
@@ -215,7 +500,19 @@ Write a function that takes a String as input and returns the number of characte
 Using your function, print how many characters are in myString:
 
 `let myString = "Swift is a new programming language for iOS, OS X, watchOS, and tvOS apps that builds on the best of C and Objective-C, without the constraints of C compatibility."`
+```swift
+let myString = "Swift is a new programming language for iOS, OS X, watchOS, and tvOS apps that builds on the best of C and Objective-C, without the constraints of C compatibility."
+func characterCounter(word: String)-> Int{
+var counter = 0
+for _ in word{
+counter += 1
+}
+return counter
+}
+var total = characterCounter(word: myString)
+print("The total characters in your string is \(total)")
 
+```
 
 ## Question 21
 
@@ -229,6 +526,20 @@ let targetCharacter: Character = "i"
 ```
 
 Sample output: `3`
+```swift
+let testString = "This is a test string for your code"
+let targetCharacter: Character = "i"
+func characterCheck(word: String, target: Character)-> Int{
+var counter = 0
+for i in testString.lowercased(){
+if i == Character(target.lowercased()) {
+counter += 1
+}
+}
+return counter
+}
+characterCheck(word: testString, target: "i")
+```
 
 
 ## Question 22
@@ -243,7 +554,21 @@ let targetCharacters: [Character] = ["a","e","i","o","u"]
 ```
 
 Output: `13`
+```
+let inputString = "This one is a little more complicated"
+let targetCharacters: [Character] = ["a","e","i","o","u"]
+func harderCheck(input: String, target: [Character])->Int{
+var counter = 0
+for i in input{
+if target.contains(i){
+counter += 1
+}
+}
+return counter
+}
+harderCheck(input: inputString, target: targetCharacters)
 
+```
 
 ## Question 23
 
@@ -255,7 +580,27 @@ Input: `let inputArray2 = [3,1,4,1,3,2,6,1,9]`
 Output: `4`
 
 //Explanation: 2, 4, 6, 9 are unique in the array. Every other number is not unique.
-
+```swift
+var someArray = [3,1,4,1,3,2,6,1,9]
+func frequent(arr: [Int])-> Int{
+var dict = [Int:Int]()
+var uniques = Int()
+for i in arr {
+if dict.keys.contains(i){
+if let a = dict[i]{
+dict[i] = a + 1
+}
+}else {  dict[i] = 1}
+}
+for (_,values) in dict{
+if values == 1{
+uniques += values
+}
+}
+return uniques
+}
+print(frequent(arr: someArray))
+```
 
 ## Question 24
 
@@ -263,6 +608,16 @@ Write a function that converts a binary number into decimal. The binary number w
 
 Example:
 Input: `let binaryArray = [1,0,1,1,1,0,1]`
+
+// 2^0 = 1
+//2^2 = 4
+//2^3 = 8
+//2^4 = 16
+//2^6= 64
+
+       - | -
+       /    \
+        
 
 Output: `93`
 
@@ -284,7 +639,19 @@ Example:
 Input:  `filterOdd(arr: [1, 2, 3, 4, 5, 6, 7, 8])`
 
 Output: `[2, 4, 6, 8]`
+```swift
+func filterOdd(array: [Int]) -> [Int]{
+var returnArray = [Int]()
+for i in array{
+if i % 2 == 0{
+returnArray += [i]
+}
+}
+return returnArray
+}
+filterOdd(array: [1, 2, 3, 4, 5, 6, 7, 8])
 
+```
 
 ## Question 27
 
@@ -294,7 +661,17 @@ Example:
 Input: `doubleIt(arr: [1, 2, 3, 4])`
 
 Output: `[2, 4, 6, 8]`
+```swift
+func doubleIt(arr: [Int])-> [Int]{
+var anotherArray = [Int]()
+for i in arr{
+anotherArray += [i*2]
+}
+return anotherArray
+}
+doubleIt(arr: [1, 2, 3, 4])
 
+```
 
 Then write a function called `multiplyBy` that takes an array of ints and an int n that will return the array with all the elements multiplied by n.
 
@@ -302,7 +679,16 @@ Example:
 Input:  `multiplyIt(arr: [1, 2, 3, 4], n: 4)`
 
 Output:  `[4, 8, 12, 16]`
-
+```swift
+func doubleIt(arr: [Int], num: Int)-> [Int]{
+var anotherArray = [Int]()
+for i in arr{
+anotherArray += [i*num]
+}
+return anotherArray
+}
+doubleIt(arr: [1, 2, 3, 4], num: 4)
+```
 
 ## Question 28
 
@@ -312,7 +698,18 @@ Example:
 Input:  `unwrap(arr: [nil, 7, 4, nil, 43, 11, nil, 2])`
 
 Output: `[7, 4, 43, 11, 2]`
-
+```swift
+func unwrap(arr: [Int?])-> [Int]{
+var anotherArray = [Int]()
+for i in arr{
+if let b = i{
+anotherArray += [b]
+}
+}
+return anotherArray
+}
+unwrap(arr: [nil, 7, 4, nil, 43, 11, nil, 2])
+```
 
 ## Question 29
 
@@ -349,17 +746,67 @@ Output: `[(.0 1003, .1 "Rays"), (.0 1001, .1 "Mets"), (.0 1004, .1 "Marlins"), (
 ## Question 32
 
 Write a function that checks if a String is a [Palindrome](https://en.wikipedia.org/wiki/Palindrome)
-
+```swift
+func palindrome(arr:String)-> Bool{
+let a = String(arr.reversed())
+if arr == a{
+return true
+}
+return false
+}
+palindrome(arr: "cac")
+```
 
 ## Question 33
 
 Write a function that checks if a String is a [pangram](https://en.wikipedia.org/wiki/Pangram)
-
+```
+func pangram(arr: String) -> Bool{
+let alphabet = "abcdefghijklmnopqrstuvwxyz"
+var check = true
+for i in arr where i != " "{
+if alphabet.contains(i.lowercased()){
+}else {
+check = false
+}
+}
+return check
+}
+pangram(arr: "Jived fox nymph grabs quick waltz")
+```
 
 ## Question 34
 
 Write your own `min()` and `max()` functions for an Array of Ints
+```swift
+func minimum(arr: [Int]) -> Int{
+var min = 1000
+for i in arr {
+if i > min{
 
+}else {
+min = i
+}
+}
+return min
+}
+minimum(arr: [9,1,8,0,10])
+
+func maximus(arr:[Int])-> Int{
+var max = 0
+for i in arr {
+if i < max{
+
+}else {
+max = i
+}
+}
+return max
+}
+
+maximus(arr: [9,1,30,0,10])
+
+```
 
 ## Question 35
 
@@ -380,3 +827,5 @@ Sample input:
 
 Sample output:
 `Uijt jt b uftu tusjoh. Bozuijoh dbo cf xsjuufo jo ifsf (fwfo Afcsbt boe afcsbt).`
+
+
